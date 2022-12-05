@@ -2,6 +2,7 @@ package br.edu.ifsp.ads.pdm.moviesmanager.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.ads.pdm.moviesmanager.databinding.ActivityMovieBinding
@@ -56,6 +57,8 @@ class MovieActivity: AppCompatActivity() {
                 genero = amovb.generoSp.toString(),
 
             )
+            Log.d("movie", movie.toString())
+            Log.d("amovb", amovb.toString())
             val resultIntent = Intent()
             resultIntent.putExtra(Constant.EXTRA_MOVIE, movie)
             setResult(RESULT_OK, resultIntent)

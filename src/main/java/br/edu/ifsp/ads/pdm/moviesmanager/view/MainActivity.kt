@@ -2,6 +2,7 @@ package br.edu.ifsp.ads.pdm.moviesmanager.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
@@ -16,7 +17,6 @@ import br.edu.ifsp.ads.pdm.moviesmanager.adapter.MovieAdapter
 import br.edu.ifsp.ads.pdm.moviesmanager.controller.MovieRoomController
 import br.edu.ifsp.ads.pdm.moviesmanager.databinding.ActivityMainBinding
 import br.edu.ifsp.ads.pdm.moviesmanager.model.Constant.EXTRA_MOVIE
-import br.edu.ifsp.ads.pdm.moviesmanager.model.Constant.VIEW_INTEGRANTE
 import br.edu.ifsp.ads.pdm.moviesmanager.model.Constant.VIEW_MOVIE
 import br.edu.ifsp.ads.pdm.moviesmanager.model.entity.Movie
 
@@ -89,24 +89,11 @@ class MainActivity : AppCompatActivity() {
         return when(item.itemId) {
             R.id.addMovieMi -> {
                 carl.launch(Intent(this, MovieActivity::class.java))
+                Log.d("foi", "acho q foi")
+                // Buscando integrantes no banco
+                movieController.getMoviesPorNome()
                 true
             }
-//            R.id.rachaMi -> {
-//                var total: Float = 0.0F
-//                for (integrante: Integrante in listaMovies){
-//                    total += integrante.valorPago.toFloat()
-//                }
-//                for (integrante: Integrante in listaMovies){
-//                    integrante.saldo = ((integrante.valorPago).toFloat()).minus(total.div(listaMovies.count())).toString()
-//                }
-//
-//                val rachaIntent = Intent(this, RachaActivity::class.java)
-//                rachaIntent.putExtra(LISTA_INTEGRANTES, ArrayList(listaMovies))
-//                rachaIntent.putExtra("KEK", "KEKW")
-//                carl.launch(rachaIntent)
-//
-//                true
-//            }
             else -> { false }
         }
     }
@@ -133,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                 // Chama a tela para editar o integrante
                 val integranteIntent = Intent(this, MovieActivity::class.java)
                 integranteIntent.putExtra(EXTRA_MOVIE, movie)
-                integranteIntent.putExtra(VIEW_INTEGRANTE, false)
+                integranteIntent.putExtra(VIEW_MOVIE, false)
                 carl.launch(integranteIntent)
                 true
             }
@@ -141,7 +128,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun atualizarListaIntegrantes(_listaMovies: MutableList<Movie>?) {
+    fun atualizarListaMovies(_listaMovies: MutableList<Movie>?) {
         listaMovies.clear()
         listaMovies.addAll(_listaMovies!!)
         movieAdapter.notifyDataSetChanged()

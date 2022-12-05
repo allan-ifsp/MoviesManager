@@ -16,8 +16,8 @@ interface MovieRoomDao {
     @Insert
     fun criarMovie(movie: Movie)
 
-    @Query("SELECT * FROM $MOVIE_TABLE WHERE $ID_COLUMN = :id")
-    fun receberMovie(id: Int): Movie?
+    @Query("SELECT * FROM $MOVIE_TABLE WHERE $NOME_COLUMN = :nome")
+    fun receberMovie(nome: String): Movie?
 
     @Query("SELECT * FROM $MOVIE_TABLE ORDER BY $NOME_COLUMN")
     fun receberMoviesPorNome(): MutableList<Movie>

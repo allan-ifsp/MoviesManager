@@ -1,6 +1,7 @@
 package br.edu.ifsp.ads.pdm.moviesmanager.controller
 
 import android.os.AsyncTask
+import android.util.Log
 import androidx.room.Room
 import br.edu.ifsp.ads.pdm.moviesmanager.model.dao.MovieRoomDao
 import br.edu.ifsp.ads.pdm.moviesmanager.model.database.MovieRoomDaoDatabase
@@ -23,20 +24,21 @@ class MovieRoomController(private val mainActivity: MainActivity) {
         }.start()
     }
 
-    fun getMovie(id: Int) = movieDaoImpl.receberMovie(id)
+    fun getMovie(nome: String) = movieDaoImpl.receberMovie(nome)
 
     fun getMoviesPorNome() {
         object: AsyncTask<Unit, Unit, MutableList<Movie>>(){
             override fun doInBackground(vararg params: Unit?): MutableList<Movie> {
                 val returnList = mutableListOf<Movie>()
                 returnList.addAll(movieDaoImpl.receberMoviesPorNome())
+                Log.d("aa", returnList.toString())
                 return returnList
             }
 
             override fun onPostExecute(result: MutableList<Movie>?) {
                 super.onPostExecute(result)
                 if (result != null){
-                    mainActivity.atualizarListaIntegrantes(result)
+                    mainActivity.atualizarListaMovies(result)
                 }
             }
         }.execute()
@@ -53,7 +55,7 @@ class MovieRoomController(private val mainActivity: MainActivity) {
             override fun onPostExecute(result: MutableList<Movie>?) {
                 super.onPostExecute(result)
                 if (result != null){
-                    mainActivity.atualizarListaIntegrantes(result)
+                    mainActivity.atualizarListaMovies(result)
                 }
             }
         }.execute()
