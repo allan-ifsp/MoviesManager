@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.ads.pdm.moviesmanager.databinding.ActivityMovieBinding
 import br.edu.ifsp.ads.pdm.moviesmanager.model.Constant
 import br.edu.ifsp.ads.pdm.moviesmanager.model.entity.Movie
-import java.util.*
 
 class MovieActivity: AppCompatActivity() {
     private val amovb: ActivityMovieBinding by lazy {
