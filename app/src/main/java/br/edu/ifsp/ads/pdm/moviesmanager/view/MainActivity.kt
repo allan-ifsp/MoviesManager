@@ -15,9 +15,11 @@ import br.edu.ifsp.ads.pdm.moviesmanager.R
 import br.edu.ifsp.ads.pdm.moviesmanager.controller.IntegranteRoomController
 import br.edu.ifsp.ads.pdm.moviesmanager.databinding.ActivityMainBinding
 import br.edu.ifsp.ads.pdm.moviesmanager.model.Constant.EXTRA_INTEGRANTE
+import br.edu.ifsp.ads.pdm.moviesmanager.model.Constant.EXTRA_MOVIE
 import br.edu.ifsp.ads.pdm.moviesmanager.model.Constant.LISTA_INTEGRANTES
 import br.edu.ifsp.ads.pdm.moviesmanager.model.Constant.VIEW_INTEGRANTE
-import br.edu.ifsp.ads.pdm.moviesmanager.model.entity.Integrante
+import br.edu.ifsp.ads.pdm.moviesmanager.model.entity.Movie
+import br.edu.ifsp.ads.pdm.splitthebill.adapter.MovieAdapter
 
 class MainActivity : AppCompatActivity() {
     private val amb: ActivityMainBinding by lazy {
@@ -25,15 +27,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Data source
-    private val listaIntegrantes: MutableList<Integrante> = mutableListOf()
+    private val listaIntegrantes: MutableList<Movie> = mutableListOf()
 
     // Adapter
-    private lateinit var integranteAdapter: IntegranteAdapter
+    private lateinit var movieAdapter: MovieAdapter
 
     private lateinit var carl: ActivityResultLauncher<Intent>
 
     // Controller
-    private val integranteController: IntegranteRoomController by lazy {
+    private val movieController: IntegranteRoomController by lazy {
         IntegranteRoomController(this)
     }
 
@@ -41,24 +43,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(amb.root)
 
-        integranteAdapter = IntegranteAdapter(this, listaIntegrantes)
-        amb.integrantesLv.adapter = integranteAdapter
+        movieAdapter = MovieAdapter(this, listaIntegrantes)
+        amb.moviesLv.adapter = movieAdapter
 
         carl = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(),
         ) { result ->
             if (result.resultCode == RESULT_OK) {
-                val integrante = result.data?.getParcelableExtra<Integrante>(EXTRA_INTEGRANTE)
+                val movie = result.data?.getParcelableExtra<Movie>(EXTRA_MOVIE)
 
-                integrante?.let { _integrante->
-                    if (_integrante.id != null) {
-                        val position = listaIntegrantes.indexOfFirst { it.id == _integrante.id }
+                movie?.let { _movie->
+                    if (_movie.nome != null) {
+                        val position = listaIntegrantes.indexOfFirst { it.nome == _movie.nome }
                         if (position != -1) {
-                            integranteController.editarIntegrante(_integrante)
+                            movieController.editarIntegrante(_movie)
                         }
                     }
                     else {
-                        integranteController.inserirIntegrante(_integrante)
+                        movieController.inserirIntegrante(_movie)
                     }
                 }
             }
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         // Buscando integrantes no banco
-        integranteController.getIntegrantes()
+        movieController.getIntegrantes()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -124,7 +126,7 @@ class MainActivity : AppCompatActivity() {
         return when(item.itemId) {
             R.id.removerIntegranteMi -> {
                 // Remove o integrante
-                integranteController.removerIntegrante(integrante)
+                movieController.removerIntegrante(integrante)
                 true
             }
 
@@ -143,6 +145,6 @@ class MainActivity : AppCompatActivity() {
     fun atualizarListaIntegrantes(_listaIntegrantes: MutableList<Integrante>?) {
         listaIntegrantes.clear()
         listaIntegrantes.addAll(_listaIntegrantes!!)
-        integranteAdapter.notifyDataSetChanged()
+        movieAdapter.notifyDataSetChanged()
     }
 }

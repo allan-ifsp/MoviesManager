@@ -6,7 +6,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.ads.pdm.moviesmanager.databinding.ActivityMoviesBinding
 import br.edu.ifsp.ads.pdm.moviesmanager.model.Constant
-import br.edu.ifsp.ads.pdm.moviesmanager.model.entity.Integrante
 import br.edu.ifsp.ads.pdm.moviesmanager.model.entity.Movie
 
 class MovieActivity: AppCompatActivity() {
