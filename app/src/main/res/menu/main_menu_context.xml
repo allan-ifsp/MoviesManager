@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/removerMovieMi"
+        android:title="@string/remover_filme" />
+    <item
+        android:id="@+id/editarMovieMi"
+        android:title="@string/editar_filme" />
+</menu>
