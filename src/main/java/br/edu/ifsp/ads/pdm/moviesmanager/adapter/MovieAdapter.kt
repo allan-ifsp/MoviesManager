@@ -1,6 +1,7 @@
 package br.edu.ifsp.ads.pdm.moviesmanager.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,7 @@ class MovieAdapter (
                     false
                 )
 
-            val movieTileHolder = MovieTileHolder(
+            val movieTileHolder = MovieAdapter.MovieTileHolder(
                 movieTileView.findViewById(R.id.nomeTv),
                 movieTileView.findViewById(R.id.anoLancamentoTv),
                 movieTileView.findViewById(R.id.notaTv)
@@ -37,12 +38,13 @@ class MovieAdapter (
             movieTileView.tag = movieTileHolder
         }
 
-        with(movieTileView?.tag as MovieTileHolder) {
+        with(movieTileView?.tag as MovieAdapter.MovieTileHolder) {
             nomeTv.text = movie.nome
             anoLancamentoTv.text = movie.anoLancamento.toString()
             notaTv.text = movie.nota.toString()
         }
 
+        Log.d("MovTileView", movieTileView.toString())
         return movieTileView
 
     }

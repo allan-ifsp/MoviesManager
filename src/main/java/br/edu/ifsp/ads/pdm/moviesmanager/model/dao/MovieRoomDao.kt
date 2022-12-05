@@ -8,7 +8,6 @@ interface MovieRoomDao {
     companion object Constant {
         const val MOVIE_DATABASE_FILE = "movies_room"
         const val MOVIE_TABLE = "movie"
-        const val ID_COLUMN = "nome"
         const val NOME_COLUMN = "nome"
         const val NOTA_COLUMN = "nota"
     }

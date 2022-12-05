@@ -12,14 +12,13 @@ data class Movie(
     @PrimaryKey(autoGenerate = false)
     var nome: String,
 
-
     var anoLancamento: String,
 
     var estudioProdutora: String,
 
     var tempoDuracao: String,
 
-    var flag: Boolean,
+    var flag: String,
 
     var nota: String,
 

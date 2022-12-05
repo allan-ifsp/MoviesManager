@@ -23,11 +23,12 @@ class MovieActivity: AppCompatActivity() {
             with(amovb) {
                 with(_movieRecebido) {
                     nomeEt.setText(nome)
-                    anoLancamentoEt.setText(anoLancamento.toString())
+                    anoLancamentoEt.setText(anoLancamento)
                     estudioProdutoraEt.setText(estudioProdutora)
-                    tempoDuracaoEt.setText(tempoDuracao.toString())
-                    flagCb.isChecked = flag == true
-                    notaEt.setText(nota.toString())
+                    tempoDuracaoEt.setText(tempoDuracao)
+                    flagCb.isChecked = flag.toBoolean()
+                    notaEt.setText(nota)
+                    generoSp.setSelection(1)
 //                    val adapter = ArrayAdapter(this@with, )
 //                    generoSp.adapter = genero.toString()
 
@@ -52,7 +53,7 @@ class MovieActivity: AppCompatActivity() {
                 anoLancamento = amovb.anoLancamentoEt.text.toString(),
                 estudioProdutora = amovb.estudioProdutoraEt.text.toString(),
                 tempoDuracao = amovb.tempoDuracaoEt.text.toString(),
-                flag = amovb.flagCb.isChecked,
+                flag = amovb.flagCb.isChecked.toString(),
                 nota = amovb.notaEt.text.toString(),
                 genero = amovb.generoSp.toString(),
 

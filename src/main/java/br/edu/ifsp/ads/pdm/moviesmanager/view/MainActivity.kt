@@ -50,15 +50,17 @@ class MainActivity : AppCompatActivity() {
         ) { result ->
             if (result.resultCode == RESULT_OK) {
                 val movie = result.data?.getParcelableExtra<Movie>(EXTRA_MOVIE)
-
+                Log.d("temMovie", movie.toString())
                 movie?.let { _movie->
                     if (_movie.nome != null) {
                         val position = listaMovies.indexOfFirst { it.nome == _movie.nome }
                         if (position != -1) {
                             movieController.editarMovie(_movie)
+                            Log.d("editarMovie", _movie.toString())
                         }
                     }
                     else {
+                        Log.d("inserirMovie", _movie.toString())
                         movieController.inserirMovie(_movie)
                     }
                 }
@@ -132,5 +134,6 @@ class MainActivity : AppCompatActivity() {
         listaMovies.clear()
         listaMovies.addAll(_listaMovies!!)
         movieAdapter.notifyDataSetChanged()
+        Log.d("ListaMovies", listaMovies.toString())
     }
 }
