@@ -17,6 +17,7 @@ import br.edu.ifsp.ads.pdm.moviesmanager.adapter.MovieAdapter
 import br.edu.ifsp.ads.pdm.moviesmanager.controller.MovieRoomController
 import br.edu.ifsp.ads.pdm.moviesmanager.databinding.ActivityMainBinding
 import br.edu.ifsp.ads.pdm.moviesmanager.model.Constant.EXTRA_MOVIE
+import br.edu.ifsp.ads.pdm.moviesmanager.model.Constant.UPDATE_MOVIE
 import br.edu.ifsp.ads.pdm.moviesmanager.model.Constant.VIEW_MOVIE
 import br.edu.ifsp.ads.pdm.moviesmanager.model.entity.Movie
 
@@ -94,6 +95,14 @@ class MainActivity : AppCompatActivity() {
                 movieController.getMoviesPorNome()
                 true
             }
+            R.id.orderByNome -> {
+                movieController.getMoviesPorNome()
+                true
+            }
+            R.id.orderByNota -> {
+                movieController.getMoviesPorNota()
+                true
+            }
             else -> { false }
         }
     }
@@ -118,10 +127,10 @@ class MainActivity : AppCompatActivity() {
 
             R.id.editarMovieMi -> {
                 // Chama a tela para editar o integrante
-                val integranteIntent = Intent(this, MovieActivity::class.java)
-                integranteIntent.putExtra(EXTRA_MOVIE, movie)
-                integranteIntent.putExtra(VIEW_MOVIE, false)
-                carl.launch(integranteIntent)
+                val movieIntent = Intent(this, MovieActivity::class.java)
+                movieIntent.putExtra(EXTRA_MOVIE, movie)
+                movieIntent.putExtra(VIEW_MOVIE, false)
+                carl.launch(movieIntent)
                 true
             }
             else -> { false }

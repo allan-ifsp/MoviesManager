@@ -1,7 +1,6 @@
 package br.edu.ifsp.ads.pdm.moviesmanager.model.entity
 
 import android.os.Parcelable
-import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
@@ -20,7 +19,7 @@ data class Movie(
 
     var flag: String,
 
-    var nota: String,
+    var nota: Double?,
 
     var genero: String,
 ): Parcelable

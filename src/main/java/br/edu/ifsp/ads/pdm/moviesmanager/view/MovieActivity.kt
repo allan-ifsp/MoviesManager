@@ -14,6 +14,20 @@ class MovieActivity: AppCompatActivity() {
         ActivityMovieBinding.inflate(layoutInflater)
     }
 
+    private fun getPosition(string: String): Int {
+        Log.d("StrPAcharPos", string)
+        var n = -1
+        if (string == "Romance") n = 0
+        if (string == "Aventura") n = 1
+        if (string == "Terror") n = 2
+        if (string == "Ação") n = 3
+        if (string == "Drama") n = 4
+        if (string == "Comédia") n = 5
+        if (string == "Ficção Científica") n = 6
+        if (string == "Animação") n = 7
+        return n
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(amovb.root)
@@ -27,14 +41,12 @@ class MovieActivity: AppCompatActivity() {
                     estudioProdutoraEt.setText(estudioProdutora)
                     tempoDuracaoEt.setText(tempoDuracao)
                     flagCb.isChecked = flag.toBoolean()
-                    notaEt.setText(nota)
-                    generoSp.setSelection(1)
-//                    val adapter = ArrayAdapter(this@with, )
-//                    generoSp.adapter = genero.toString()
-
+                    notaEt.setText(nota.toString())
+                    generoSp.setSelection(3)
                 }
             }
         }
+
         val viewMovie = intent.getBooleanExtra(Constant.VIEW_MOVIE, false)
         if (viewMovie) {
             amovb.nomeEt.isEnabled = false
@@ -47,14 +59,24 @@ class MovieActivity: AppCompatActivity() {
             amovb.saveBt.visibility = View.GONE
         }
 
+        fun convertToFloat(num: String): kotlin.Float {
+            try {
+                num as kotlin.Float
+                return num
+            }catch (e: java.lang.Error){
+                return 0.0F
+            }
+        }
+
         amovb.saveBt.setOnClickListener {
+
             val movie = Movie(
                 nome = amovb.nomeEt.text.toString(),
                 anoLancamento = amovb.anoLancamentoEt.text.toString(),
                 estudioProdutora = amovb.estudioProdutoraEt.text.toString(),
                 tempoDuracao = amovb.tempoDuracaoEt.text.toString(),
                 flag = amovb.flagCb.isChecked.toString(),
-                nota = amovb.notaEt.text.toString(),
+                nota = (amovb.notaEt.text.toString()).toDoubleOrNull(),
                 genero = amovb.generoSp.toString(),
 
             )

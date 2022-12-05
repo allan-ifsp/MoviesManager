@@ -21,7 +21,7 @@ interface MovieRoomDao {
     @Query("SELECT * FROM $MOVIE_TABLE ORDER BY $NOME_COLUMN")
     fun receberMoviesPorNome(): MutableList<Movie>
 
-    @Query("SELECT * FROM $MOVIE_TABLE ORDER BY $NOTA_COLUMN")
+    @Query("SELECT * FROM $MOVIE_TABLE ORDER BY $NOTA_COLUMN DESC")
     fun receberMoviesPorNota(): MutableList<Movie>
 
     @Update

@@ -7,4 +7,15 @@
         android:title="@string/adicionar_filme"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/orderByNome"
+        android:title="@string/nome"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/orderByNota"
+        android:title="@string/nota"
+        app:showAsAction="ifRoom" />
+
+
 </menu>
